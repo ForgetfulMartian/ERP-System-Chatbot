@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Text Extractor</title>
+    <style>
+        /* General Reset and Basic Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            margin: auto;
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00adb5;
+        }
+
+        .upload-section {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px dashed #00adb5;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-section:hover {
+            background-color: #333333;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: #8a8a8a;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background-color: #00adb5;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #121212;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00c9d5;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            border: 1px solid #00adb5;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #00e0ff;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Hamburger Menu Styling */
+        .hamburger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: #f0f0f0;
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .side-nav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 99;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .side-nav div {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .side-nav div:hover {
+            color: #f1f1f1;
+        }
+
+        .side-nav .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .side-nav div {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hamburger Menu Icon -->
+    <div class="hamburger-menu" onclick="openNav()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Side Navigation -->
+    <div id="mySidenav" class="side-nav">
+        <div href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</div>
+        <div onclick="navigateToPage('webpage.html')">Home</div>
+        <div onclick="navigateToPage('OCR.html')">OCR</div>
+        <div onclick="navigateToPage('NER.html')">NER</div>
+        <div onclick="navigateToPage('DocClass.html')">Document Classification</div>
+        <div onclick="navigateToPage('DocDig.html')">Document Digitalization</div>
+    </div>
+
+    <div class="container">
+        <h1>OCR Text Extractor</h1>
+
+        <div class="upload-section" onclick="document.getElementById('file-input').click();">
+            <input type="file" id="file-input" accept="image/*">
+            <p class="upload-text">Click to upload an image or drag & drop</p>
+        </div>
+
+        <button onclick="extractText()">Extract Text</button>
+
+        <pre id="output">Text will appear here...</pre>
+    </div>
+
+    <script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
+    <script>
+        let selectedFile;
+
+        document.getElementById('file-input').addEventListener('change', (event) => {
+            selectedFile = event.target.files[0];
+        });
+
+        function extractText() {
+            if (!selectedFile) {
+                alert('Please select an image file first.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const image = new Image();
+                image.src = reader.result;
+
+                Tesseract.recognize(
+                    image.src,
+                    'eng',
+                    {
+                        logger: (m) => console.log(m)
+                    }
+                ).then(({ data: { text } }) => {
+                    document.getElementById('output').textContent = text || 'No text found.';
+                }).catch((error) => {
+                    console.error(error);
+                    document.getElementById('output').textContent = 'Error in text extraction.';
+                });
+            };
+            reader.readAsDataURL(selectedFile);
+        }
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+
+        function navigateToPage(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
+

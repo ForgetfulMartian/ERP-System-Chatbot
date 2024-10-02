@@ -1,0 +1,88 @@
+version: "3.0"
+stories:
+  - story: greet and ask about OCR
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_about_ocr
+      - action: utter_ask_about_ocr
+  
+  - story: how to use OCR
+    steps:
+      - intent: ask_about_ocr
+      - action: utter_ask_about_ocr
+      - intent: ocr_how_to_use
+      - action: utter_ocr_how_to_use
+
+  - story: what formats are supported
+    steps:
+      - intent: ask_about_ocr
+      - action: utter_ask_about_ocr
+      - intent: ocr_what_formats
+      - action: utter_ocr_what_formats
+
+  - story: troubleshooting OCR
+    steps:
+      - intent: ocr_troubleshooting
+      - action: utter_ocr_troubleshooting
+      
+  - story: thank you conversation
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: goodbye conversation
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+  - story: Ask about NER
+    steps:
+      - intent: ask_about_NER
+      - action: utter_ask_about_NER
+  
+  - story: How to use NER
+    steps:
+      - intent: ner_how_to_use
+      - action: utter_ner_how_to_use
+  
+  - story: What formats are supported for NER
+    steps:
+      - intent: ner_what_formats
+      - action: utter_ner_what_formats
+  
+  - story: Troubleshooting NER
+    steps:
+      - intent: ner_troubleshooting
+      - action: utter_ner_troubleshooting
+      
+  - story: Ask about Document Classification
+    steps:
+      - intent: ask_about_Document_Classification
+      - action: utter_ask_about_Document_Classification
+  
+  - story: How to use Document Classification
+    steps:
+      - intent: Document_Classification_how_to_use
+      - action: utter_Document_Classification_how_to_use
+  
+  - story: What formats are supported for Document_Classification
+    steps:
+      - intent: Document_Classification_what_formats
+      - action: utter_Document_Classification_what_formats
+  
+  - story: Ask about Document Digitalization
+    steps:
+      - intent: ask_about_Document_Digitalization
+      - action: utter_ask_about_Document_Digitalization
+  
+  - story: How to use Document Digitalization
+    steps:
+      - intent: Document_Digitalization_how_to_use
+      - action: utter_Document_Digitalization_how_to_use
+  
+  - story: What formats are supported for Document_Digitalization
+    steps:
+      - intent: Document_Digitalization_what_formats
+      - action: utter_Document_Digitalization_what_formats
+  
+

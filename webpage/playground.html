@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <style>
+        body {
+    overflow: hidden; /* Prevent scrolling */
+}
+
+a {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, #5bcedf08, #f96161, #fc8f46, #36e494);
+    background-size: 400%;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+a:hover {
+    animation: animate 8s linear infinite;
+}
+
+a:before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(45deg, #49ff00, #15ffe5, #00fff3ea, #10ff00cc);
+    background-size: 400px;
+    border-radius: 40px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+a:hover:before {
+    filter: blur(10px);
+    opacity: 1;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
+@keyframes moveShapes {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(50px, -20px); /* Move right and up */
+    }
+    50% {
+        transform: translate(-50px, 40px); /* Move left and down */
+    }
+    75% {
+        transform: translate(30px, 30px); /* Move right and down */
+    }
+    100% {
+        transform: translate(0, 0); /* Return to original position */
+    }
+}
+
+
+/* Shape styles */
+.shape {
+    position: absolute; /* Ensures shapes are layered properly */
+    top: calc(Math.random() * 100vh); /* Random vertical position */
+    left: calc(Math.random() * 100vw); /* Random horizontal position */
+    width: Math.random() * (50 - 20) + 20 + 'px'; /* Random width between 20px and 50px */
+    height: Math.random() * (50 - 20) + 20 + 'px'; /* Random height between 20px and 50px */
+    background-color: rgba(255, 255, 255, Math.random()); /* Random opacity */
+    opacity: Math.random(); /* Random opacity */
+    transform: rotate(Math.random() * 360deg); /* Random rotation */
+    pointer-events: none; /* Prevent shapes from interfering with mouse events */
+    animation: moveShapes 5s infinite alternate ease-in-out;
+
+}
+        .shape {
+    border-radius: 50%; /* Change to make the shapes round */
+}
+    
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Pitch black background */
+    color: #ffffff; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrollbars */
+    }
+    #chatbox {
+    position: fixed;
+    bottom: 120px; /* Positioned slightly above the icon */
+    right: 20px;
+    width: 400px;  /* Maintain larger size */
+    height: 500px;
+    background: rgba(20, 20, 20, 0.95); /* Darker, semi-transparent background */
+    border: 1px solid #555; /* Subtle border */
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Stronger shadow for depth */
+    border-radius: 12px; /* Smooth rounded corners */
+    z-index: 1000;
+    overflow: hidden; /* Ensure content doesn't spill out */
+}
+
+#chatbox-header {
+    background: #333; /* Darker header to match overall theme */
+    color: #fff; /* Light text color */
+    padding: 15px; /* More padding for a cleaner look */
+    text-align: center;
+    font-size: 18px; /* Slightly larger font */
+    border-bottom: 1px solid #555; /* Subtle separation from chat area */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #222; /* Darker background for the message area */
+    color: #ddd; /* Light gray for message text */
+}
+
+#input {
+    display: flex;
+    padding: 10px;
+    background: #333; /* Dark input area */
+    border-top: 1px solid #555; /* Subtle border at the top */
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #444; /* Darker input field */
+    color: #fff; /* White text inside the input */
+    outline: none; /* Remove default outline */
+    font-size: 16px;
+}
+
+#send-btn {
+    padding: 10px 15px;
+    background: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-left: 10px; /* Space between input and button */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#send-btn:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background-color: #00adb5;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #121212;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00c9d5;
+        }
+
+#open-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #444444; /* Dark gray background */
+    color: white; /* Icon color */
+    border: none;
+    border-radius: 50%; /* Keep circular shape */
+    width: 70px; /* Size */
+    height: 70px; /* Size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Softer shadow for depth */
+    cursor: pointer;
+    outline: none;
+    z-index: 999;
+    font-size: 40px; /* Icon size */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+#open-chat:hover {
+    background: #555555; /* Slightly lighter gray on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+#open-chat:active {
+    transform: translateY(1px); /* Pressed effect */
+}
+
+        /* Hamburger menu styles */
+        #hamburger-menu {
+            position: fixed;
+            top: 40px; /* Position at the top left */
+            left: 40px; /* Position at the left */
+            background: transparent; /* Transparent background */
+            border: none; /* No border */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor */
+            z-index: 1000; /* Ensure it's above other elements */
+            font-size: 50px; /* Size of the hamburger icon */
+        }
+        #hamburger-menu:focus {
+            outline: none; /* Remove focus outline */
+        }
+
+        /* Side Navigation Pane */
+        #side-nav {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px; /* Width of the side navigation */
+            background: #444; /* Darker menu background */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Ensure it appears above other elements */
+            padding: 20px; /* Padding around the menu */
+        }
+        #side-nav b {
+            display: block; /* Make links stack */
+            padding: 10px;
+            color: #ffffff; /* Light text color */
+            text-decoration: none; /* Remove underline */
+        }
+        #side-nav b:hover {
+            background: #007bff; /* Highlight on hover */
+        }
+        #close-nav {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 24px; /* Close icon size */
+        }
+
+        /* Centered Text Styles */
+        #main-title {
+            text-align: center;
+            font-size: 80px; /* Title size */
+            margin-bottom: 10px; /* Space below title */
+            color: #FFFFFF;
+            position: relative; /* Make it position relative */
+            z-index: 2; /* Higher z-index to ensure it is above the shapes */
+        }
+        #sub-text {
+            text-align: center;
+            font-size: 38px; /* Subtitle size */
+            color: #FFFEEE; /* Light gray color for subtitle */
+            position: relative; /* Make it position relative */
+            z-index: 2; /* Higher z-index to ensure it is above the shapes */
+        }
+    </style>
+</head>
+<body>
+
+<div id="main-title">ERP</div> <!-- Creative name -->
+<div id="sub-text">For all your Enterprise Resource Planning needs</div> <!-- Sub text -->
+<div><a class="a-glow" href="Login/login.html">Login</a></div>
+<div id="chatbox">
+    <div id="chatbox-header">Chat with us!</div>/
+    <div id="messages"></div>
+    <div id="input">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+    </div>  
+</div>
+
+<button id="open-chat">🗪</button> 
+
+<!-- Hamburger Menu -->
+<button id="hamburger-menu">☰</button>
+
+<!-- Side Navigation Pane -->
+<div id="side-nav">
+    <button id="close-nav">☰</button>
+    <button class="nav-link" onclick="navigateTo('OCR.html')">OCR Based Text Extraction</button>
+    <button class="nav-link" onclick="navigateTo('NER.html')">Named Entity Recognition</button>
+    <button class="nav-link" onclick="navigateTo('DocClass.html')">Document Classification</button>
+    <button class="nav-link" onclick="navigateTo('DocDig.html')">Document Digitalizition</button>
+</div>
+
+<script>
+    // Hamburger Menu Functionality
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const sideNav = document.getElementById('side-nav');
+    const closeNav = document.getElementById('close-nav');
+
+    hamburgerMenu.onclick = () => {
+        sideNav.style.display = 'block'; // Show the side navigation
+    };
+
+    closeNav.onclick = () => {
+        sideNav.style.display = 'none'; // Hide the side navigation
+    };
+
+    function navigateTo(url) {
+        window.location.href = url;
+    }
+</script>
+
+<script>
+    const chatbox = document.getElementById('chatbox');
+    const openChat = document.getElementById('open-chat');
+    const messages = document.getElementById('messages');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    openChat.onclick = () => {
+        chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
+        userInput.focus();
+    };
+
+    sendBtn.onclick = () => {
+        const message = userInput.value;
+        if (message.includes("open")){
+          if (message.includes("NER")){
+            openNERPage();
+        }
+          if (message.includes("OC")){
+          openOCRPage();
+        }
+        }
+
+        if (message) {
+            appendMessage('You', message);
+            userInput.value = '';
+            sendMessageToBot(message);
+        }
+    };
+  
+    userInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendBtn.click(); // Simulate a click on the send button
+    }
+    });
+    function appendMessage(sender, message) {
+        const msgDiv = document.createElement('div');
+        msgDiv.textContent = `${sender}: ${message}`;
+        messages.appendChild(msgDiv);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function sendMessageToBot(message) {
+    fetch('http://0.0.0.0:5005/webhooks/rest/webhook', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ sender: 'user', message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(res => {
+            // Add a delay for each response
+            setTimeout(() => {
+                appendMessage('Bot', res.text);
+            }, 1390); // Delay of 1 second (1000 milliseconds)
+        });
+    })
+    .catch(err => console.error(err));
+}
+
+function openOCRPage() {
+    window.location.href = 'OCR.html'; // Redirect to OCR page
+}
+
+function openNERPage() {
+    window.location.href = 'NER.html'; // Redirect to OCR page
+}
+
+    // Create animated geometric shapes
+    // Create animated geometric shapes
+    // Create animated geometric shapes
+      // Create animated geometric shapes
+// Create animated geometric shapes
+// Create animated geometric shapes
+const shapes = ['circle', 'square', 'triangle']; // Define different shapes
+const colors = ['#FF5733', '#33FF57', '#3357FF', '#F1C40F', '#8E44AD'];
+const numberOfShapes = 33; // Total number of shapes
+const minSize = 60; // Minimum size for shapes
+const maxSize = 150; // Maximum size for shapes
+const minDistance = 150; // Minimum distance between shapes
+
+const positions = []; // Store positions to check for spacing
+
+// Helper function to check distance between two points
+function isTooClose(x1, y1, x2, y2, minDist) {
+    const distance = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+    return distance < minDist;
+}
+
+for (let i = 0; i < numberOfShapes; i++) {
+    const shape = document.createElement('div');
+    const shapeType = shapes[Math.floor(Math.random() * shapes.length)]; // Random shape type
+    const randomSize = Math.random() * (maxSize - minSize) + minSize; // Generate random size
+    const randomRotation = Math.random() * 360; // Random rotation between 0 and 360 degrees
+    const randomOpacity = Math.random() * (1 - 0.3) + 0.3; // Generate random opacity between 0.3 and 1
+    shape.style.position = 'absolute'; // Ensure proper placement
+    shape.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    shape.style.opacity = randomOpacity; // Apply random opacity
+
+    let xPos, yPos, validPosition;
+
+    // Find a valid position with minimum spacing
+    do {
+        xPos = Math.random() * (window.innerWidth - randomSize); // Prevent going off-screen
+        yPos = Math.random() * (window.innerHeight - randomSize); // Prevent going off-screen
+        validPosition = true;
+
+        // Check against all previous positions for minimum spacing
+        for (const pos of positions) {
+            if (isTooClose(xPos, yPos, pos.x, pos.y, minDistance)) {
+                validPosition = false;
+                break;
+            }
+        }
+    } while (!validPosition);
+
+    // Save the position and apply it to the shape
+    positions.push({ x: xPos, y: yPos });
+    shape.style.left = `${xPos}px`;
+    shape.style.top = `${yPos}px`;
+
+    // Apply different styles based on shape type
+    if (shapeType === 'circle') {
+        shape.style.width = `${randomSize}px`;
+        shape.style.height = `${randomSize}px`;
+        shape.style.borderRadius = '50%'; // Circle shape
+    } else if (shapeType === 'square') {
+        shape.style.width = `${randomSize}px`;
+        shape.style.height = `${randomSize}px`;
+        shape.style.borderRadius = '0'; // Square shape
+    } else if (shapeType === 'triangle') {
+        shape.style.width = '0';
+        shape.style.height = '0';
+        shape.style.borderLeft = `${randomSize / 2}px solid transparent`;
+        shape.style.borderRight = `${randomSize / 2}px solid transparent`;
+        shape.style.borderBottom = `${randomSize}px solid ${shape.style.backgroundColor}`; // Triangle shape
+        shape.style.backgroundColor = 'transparent'; // Ensure background doesn't interfere
+    }
+
+    // Apply random rotation
+    shape.style.transform = `rotate(${randomRotation}deg)`; // Randomly rotate the shape
+
+    document.body.appendChild(shape);
+
+    // Animate the shapes
+    const animationDuration = Math.random() * 5 + 5; // Random duration between 5s and 10s
+    shape.animate([
+        { transform: `translateY(0px) rotate(${randomRotation}deg)` }, // Maintain rotation during animation
+        { transform: `translateY(${Math.random() * 200 - 100}px) rotate(${randomRotation}deg)` }
+    ], {
+        duration: animationDuration * 1000,
+        iterations: Infinity,
+        easing: 'ease-in-out',
+        direction: 'alternate'
+    });
+}
+
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+version: "3.0"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hello
+      - hi
+      - good morning
+  - intent: ask_about_ocr
+    examples: |
+      - What is OCR?
+      - Tell me about the OCR feature.
+      - How does OCR work?
+  - intent: ocr_how_to_use
+    examples: |
+      - How do I use OCR?
+      - Can you guide me on using the OCR feature?
+  - intent: ocr_what_formats
+    examples: |
+      - What file formats can I use for OCR?
+      - Which formats are supported?
+  - intent: ocr_troubleshooting
+    examples: |
+      - I'm having issues with OCR.
+      - The OCR is not working for me.
+  - intent: thank_you
+    examples: |
+      - Thank you!
+      - Thanks for the help.
+  - intent: goodbye
+    examples: |
+      - Goodbye
+      - See you later
+      
+  - intent: ask_about_NER
+    examples: |
+      - What is Named Entity Recognition?
+      - Can you explain NER?
+      - Tell me about Named Entity Recognition.
+      - What does NER do?
+
+  - intent: ner_how_to_use
+    examples: |
+      - How do I use NER?
+      - Can you guide me on using Named Entity Recognition?
+      - What steps should I follow to use NER?
+      - Can you show me how to implement NER?
+
+  - intent: ner_what_formats
+    examples: |
+      - What types of data can I use for NER?
+      - Which formats are supported for Named Entity Recognition?
+      - Can NER work with text files?
+      - What kind of input is needed for NER?
+
+  - intent: ner_troubleshooting
+    examples: |
+      - I'm having trouble with NER.
+      - Why isn't NER recognizing entities?
+      - What should I do if NER isn't working?
+      - I'm facing issues with Named Entity Recognition.
+      
+  - intent: ask_about_Document_Classification
+    examples: |
+      - What is Document Classification?
+      - Can you explain Document Classification?
+      - Tell me about Document Classification.
+      - What does Document Classification do?
+
+  - intent: Document_Classification_how_to_use
+    examples: |
+      - How do I use Document Classification?
+      - Can you guide me on using Document Classification?
+      - What steps should I follow to use Document Classification?
+      - Can you show me how to implement Document Classification?
+
+  - intent: Document_Classification_what_formats
+    examples: |
+      - What types of data can I use for Document Classification?
+      - Which formats are supported for Document Classification?
+      - Can Document Classification work with text files?
+      - What kind of input is needed for Document Classification?
+  - intent: ask_about_Document_Digitalization
+    examples: |
+      - What is Document Classification?
+      - Can you explain Document Classification?
+      - Tell me about Document Classification.
+      - What does Document Classification do?
+
+  - intent: Document_Digitalization_how_to_use
+    examples: |
+      - How do I use Document Digitalization?
+      - Can you guide me on using Document Digitalization?
+      - What steps should I follow to use Document Digitalization?
+      - Can you show me how to implement Document Digitalization?
+
+  - intent: Document_Digitalization_what_formats
+    examples: |
+      - What types of data can I use for Document Digitalization?
+      - Which formats are supported for Document Digitalization?
+      - Can Document Digitalization work with text files?
+      - What kind of input is needed for Document Digitalization?

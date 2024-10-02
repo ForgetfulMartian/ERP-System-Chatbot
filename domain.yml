@@ -1,0 +1,80 @@
+version: "3.0"
+
+intents:
+  - greet
+  - ask_about_ocr
+  - ocr_how_to_use
+  - ocr_what_formats
+  - ocr_troubleshooting
+  - thank_you
+  - goodbye
+  - ask_about_NER
+  - ner_how_to_use
+  - ner_what_formats
+  - ner_troubleshooting
+  - ask_about_Document_Classification
+  - Document_Classification_how_to_use
+  - Document_Classification_what_formats
+  - ask_about_Document_Digitalization
+  - Document_Digitalization_how_to_use
+  - Document_Digitalization_what_formats
+
+responses:
+
+  utter_iamabot:
+    - text: "I am a bot designed to assist you with our ERP features, including OCR."
+  utter_greet:
+    - text: "Hello! How can I assist you today with our ERP system?"
+  utter_ask_about_ocr:
+    - text: "Our OCR feature allows you to extract text from images and PDFs seamlessly. If you want to use it, type 'open OCR text extraction.'"
+  utter_ocr_how_to_use:
+    - text: "To use the OCR feature, simply upload your document by clicking the browse button on the 'OCR Based Text Extraction' page, and click 'Extract Text'."
+  utter_ocr_what_formats:
+    - text: "You can upload images in formats like JPEG, PNG, and PDFs."
+  utter_ocr_troubleshooting:
+    - text: "If you're having issues with OCR."
+  utter_thank_you:
+    - text: "You're welcome! If you have any more questions, feel free to ask."
+  utter_goodbye:
+    - text: "Goodbye! Have a great day!"
+  utter_ask_about_NER:
+    - text: "Named Entity Recognition (NER) seeks to locate and classify named entities in text into predefined categories. To try out our NER feature, type open NER"
+  
+  utter_ner_how_to_use:
+    - text: "To use the NER feature, simply upload your document by clicking the browse button on the 'Named Entity Recognition' page, and click 'Analyze'."
+  
+  utter_ner_what_formats:
+    - text: "You can use plain text files, JSON, or CSV formats for Named Entity Recognition, depending on the implementation."
+  
+  utter_ner_troubleshooting:
+    - text: "If NER is not recognizing entities, please check the input format and ensure the text is clear and well-structured."
+    
+  utter_ask_about_Document_Classification:
+    - text: "Categorize Documents using predefined criteria, like invoices, contracts etc. To try out our Document Extraction feature, type open DocClass"
+  
+  utter_Document_Classification_how_to_use:
+    - text: "To use the Document Classification feature, simply upload your document by clicking the browse button on the 'Document Classification' page, select a format and click 'Upload'."
+  
+  utter_Document_Classification_what_formats:
+    - text: "You can use plain text files, image formats for Document_Classification, depending on the implementation."
+ 
+  utter_ask_about_Document_Digitalization:
+    - text: "Convert Physical Documents into Digital Documents using our system and your camera. To try out our Document Digitalization feature, type open DocDig"
+  
+  utter_Document_Digitalization_how_to_use:
+    - text: "To use the Document Digitalization feature, simply upload your document by clicking the browse button on the 'Document Digitalization' page, select a format and click 'Upload'."
+  
+  utter_Document_Digitalization_what_formats:
+    - text: "You can use any image formats for Document Digitalization, depending on the implementation."
+
+
+
+
+actions:
+  - action_default_fallback
+  - action_iamabot
+  - utter_greet
+  - utter_goodbye
+  - utter_iamabot
+  
+

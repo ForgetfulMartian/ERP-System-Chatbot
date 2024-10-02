@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Named Entity Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* Dark background */
+            color: #fff; /* Light text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        #main-title {
+            text-align: center;
+            font-size: 80px; /* Title size */
+            margin: 20px 0; /* Space above and below title */
+            color: #FFFFFF;
+        }
+        #sub-text {
+            text-align: center;
+            font-size: 38px; /* Subtitle size */
+            color: #FFFEEE; /* Light gray color for subtitle */
+            margin-bottom: 20px; /* Space below subtitle */
+        }
+
+        /* Hamburger menu styles */
+        .hamburger-menu {
+            position: fixed;
+            top: 40px; /* Position at the top left */
+            left: 40px; /* Position at the left */
+            background: transparent; /* Transparent background */
+            border: none; /* No border */
+            color: white; /* Text color */
+            cursor: pointer; /* Pointer cursor */
+            z-index: 1000; /* Ensure it's above other elements */
+            font-size: 50px; /* Size of the hamburger icon */
+        }
+        .hamburger-menu:focus {
+            outline: none; /* Remove focus outline */
+        }
+
+        /* Side Navigation Pane */
+        #side-nav {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px; /* Width of the side navigation */
+            background: #444; /* Darker menu background */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Ensure it appears above other elements */
+            padding: 20px; /* Padding around the menu */
+        }
+        #side-nav b {
+            display: block; /* Make links stack */
+            padding: 10px;
+            color: #ffffff; /* Light text color */
+            text-decoration: none; /* Remove underline */
+            cursor: pointer; /* Pointer cursor */
+        }
+        #side-nav b:hover {
+            background: #007bff; /* Highlight on hover */
+        }
+        #close-nav {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 24px; /* Close icon size */
+        }
+
+        /* Main content styles */
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center items vertically */
+            margin-top: 20px; /* Space above content */
+            width: 80%; /* Width of the content */
+        }
+        #upload-section {
+            margin-bottom: 20px; /* Space below upload section */
+            text-align: center;
+        }
+        input[type="file"] {
+            background: #222; /* Dark background for file input */
+            border: none; /* No border */
+            color: #fff; /* White text color */
+            padding: 10px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+        }
+        #text-input {
+            width: 100%;
+            height: 150px; /* Height of text area */
+            background: #222; /* Dark background for text area */
+            border: none; /* No border */
+            color: #fff; /* White text color */
+            padding: 10px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 20px; /* Space below text area */
+            resize: none; /* Prevent resizing */
+        }
+        #submit-button {
+            background: #007bff; /* Blue background for button */
+            color: #fff; /* White text color */
+            border: none; /* No border */
+            padding: 10px 20px; /* Padding */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 16px; /* Button font size */
+        }
+        #results {
+            width: 100%; /* Full width for results */
+            background: #333; /* Darker background for results */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding */
+            text-align: left; /* Left-aligned text */
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-title">Named Entity Recognition</div> <!-- Title -->
+    <div id="sub-text">Identify and classify entities in text.</div> <!-- Subtitle -->
+
+    <!-- Hamburger Menu -->
+    <button class="hamburger-menu" onclick="openNav()">☰</button>
+
+    <!-- Side Navigation Pane -->
+    <div id="side-nav">
+        <button id="close-nav" onclick="closeNav()">✖</button>
+        <b onclick="navigateToPage('webpage.html')">Home</b>
+        <b onclick="navigateToPage('OCR.html')">OCR</b>
+        <b onclick="navigateToPage('NER.html')">NER</b>
+        <b onclick="navigateToPage('DocClass.html')">Document Classification</b>
+        <b onclick="navigateToPage('DocDig.html')">Document Digitalization</b>
+    </div>
+
+    <div id="content">
+        <!-- Document Upload Section -->
+        <div id="upload-section">
+            <input type="file" id="file-upload" accept=".txt,.pdf,.docx" />
+        </div>
+
+        <!-- Text Input Area -->
+        <textarea id="text-input" placeholder="Or enter text here..."></textarea>
+
+        <!-- Submit Button -->
+        <button id="submit-button">Analyze</button>
+
+        <!-- Results Section -->
+        <div id="results">
+            <h3>Results:</h3>
+            <p>No results yet. Please upload a document or enter text above.</p>
+        </div>
+    </div>
+
+    <script>
+        // Hamburger Menu Functionality
+        function openNav() {
+            document.getElementById("side-nav").style.display = 'block'; // Show the side navigation
+        }
+
+        function closeNav() {
+            document.getElementById("side-nav").style.display = 'none'; // Hide the side navigation
+        }
+
+        function navigateToPage(page) {
+            window.location.href = page; // Navigate to the specified page
+        }
+
+        // Submit Button Functionality
+        const submitButton = document.getElementById('submit-button');
+        const results = document.getElementById('results');
+
+        submitButton.onclick = () => {
+            results.style.display = 'block'; // Show results section
+            // Here you could add code to handle the file upload or text analysis
+        };
+    </script>
+
+</body>
+</html>
+
