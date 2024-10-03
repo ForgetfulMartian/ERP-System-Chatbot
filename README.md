@@ -23,7 +23,7 @@ a much larger website which presents a lot more data in often an unintuitive way
 
 
 Thanks to my team, which consisted of:<br>
-Jaynil Dimpalkumar Panjwani - Team Lead, worked on login and registration page <br>
+Sambhav Manohar - Chatbot training, integration of chatbot with website, Homepage of product <br>
 Nikitha Budaraju - PPT and Website design <br>
 Harshini G. Reddy - Chatbot dialogue and website design <br>
-Sambhav Manohar - Chatbot training, integration of chatbot with website, Homepage of product </p>
+Jaynil Dimpalkumar Panjwani - Team Lead, worked on login and registration page</p>
